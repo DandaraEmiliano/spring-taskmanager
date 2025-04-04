@@ -1,17 +1,23 @@
 package com.dandara.taskmanager.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@Schema(description = "Data Transfer Object for Task")
 public class TaskDTO {
 
-    @NotBlank(message = "Title is mandatory")
-    @Size(min = 1, max = 100, message = "Title must be between 1 and 100 characters")
+
+    @NotBlank(message = "Title is required")
+    @Size(min = 3, message = "Title must have at least 3 characters")
+    @Schema(description = "Title of the task", example = "Finish Spring Boot project", required = true)
     private String title;
 
+    @Schema(description = "Description of the task", example = "Complete all steps of the CRUD")
     private String description;
 
-    @NotBlank(message = "Status is mandatory")
+    @NotBlank(message = "Status is required")
+    @Schema(description = "Status of the task", example = "in progress", required = true)
     private String status;
 
     public TaskDTO() {
